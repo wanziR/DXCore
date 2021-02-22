@@ -1,0 +1,54 @@
+﻿@model RegisterViewModel
+
+@{
+    ViewBag.Title = "用户注册";
+}
+
+<h1>用户注册</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="userNickname"></label>
+                <input asp-for="userNickname" class="form-control" />
+                <span asp-validation-for="userNickname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="userWorkPhone"></label>
+                <input asp-for="userWorkPhone" class="form-control" />
+                <span asp-validation-for="userWorkPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="userAddress"></label>
+                <input asp-for="userAddress" class="form-control" />
+                <span asp-validation-for="userAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">注册</button>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script src="~/js/CustomScript.js"></script>
+}

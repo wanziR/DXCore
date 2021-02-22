@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Student>
+
+@{ ViewBag.Title = "学生列表页面"; }
+<div class="container">
+    <div class="card-deck row">
+        @foreach (var student in Model)
+        {
+            var photoPath = "~/images/noimage.jpg";
+            if (student.PhotoPath != null)
+            {
+                photoPath = "~/images/avatars/" + student.PhotoPath;
+            }
+            <div class="col-lg-3 m-0">
+            <div class="card m-3">
+                <div class="card-header">
+                    <h3 class="card-title">@student.Name</h3>
+                </div>
+
+                <img class="card-img-top imageThumbnail " src="@photoPath" asp-append-version="true" />
+
+                <div class="card-body text-center">
+                    <h5 class="card-title">主修科目：@student.Major.GetDisplayName()</h5>
+                </div>
+
+                <div class="card-footer text-center">
+                    <form method="post" asp-action="Delete" asp-controller="Demo" asp-route-id="@student.Id">
+                        <a asp-controller="Demo" class="btn btn-info" asp-action="Details" asp-route-id="@student.Id">查看</a>
+                        <a asp-controller="Demo" asp-action="Edit" asp-route-id="@student.Id" class="btn btn-primary m-1">编辑</a>
+                        <span id="confirmDeleteSpan_@student.Id" style="display:none">
+                            <br>
+                            <span>你确定你要删除?</span>
+                            <br>
+                            <button type="submit" class="btn btn-danger">是</button>
+                            <a href="#" class="btn btn-primary"
+                               onclick="confirmDelete('@student.Id', false)">否</a>
+                        </span>
+
+                        <span id="deleteSpan_@student.Id">
+                            <a href="#" class="btn btn-danger"
+                               onclick="confirmDelete('@student.Id', true)">删除</a>
+                        </span>
+
+                    </form>
+                </div>
+            </div>
+            </div>
+                }
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/CustomScript.js" asp-append-version="true"></script>
+}
